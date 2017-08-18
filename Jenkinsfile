@@ -14,7 +14,7 @@ node {
     }
     
      stage('packaging') {
-        sh "mvn -Prod package -Pprod -DskipTests"
+       withMaven('mvn -Prod package -Pprod -DskipTests')
     }
     
  stage('SonarQube analysis') {
