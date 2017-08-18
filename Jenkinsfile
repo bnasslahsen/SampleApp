@@ -9,9 +9,9 @@ node {
         sh "java -version"
     }
     
-    stage('backend tests') {
+    stage('clean') {
     withMaven(maven: 'maven-3.5') {
-     sh "mvn -Pprod test"
+     sh "mvn -Pprod clean"
      }
     }
     
