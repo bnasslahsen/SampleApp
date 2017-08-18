@@ -5,14 +5,12 @@ node {
         checkout scm
     }
 
-    docker.image('openjdk:8').inside('-u root') {
-        stage('check java') {
-            sh "java -version"
-        }
+    stage('check java') {
+        sh "java -version"
+    }
 
-        stage('quality analysis') {
-            withSonarQubeEnv('Sonar') {
-            }
+    stage('quality analysis') {
+        withSonarQubeEnv('Sonar') {
         }
     }
 }
