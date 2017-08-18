@@ -8,17 +8,13 @@ node {
     stage('check java') {
         sh "java -version"
     }
-
-    stage('clean') {
-        sh "./mvnw clean"
-    }
     
     stage('backend tests') {
-        sh "./mvnw test"
+        withMaven('mvn -Prod test')
     }
     
      stage('packaging') {
-        sh "./mvnw package -Pprod -DskipTests"
+        sh "mvn -Prod package -Pprod -DskipTests"
     }
     
  stage('SonarQube analysis') {
