@@ -10,11 +10,15 @@ node {
     }
     
     stage('backend tests') {
-        withMaven('mvn -Pprod test')
+    withMaven(maven="maven-3.5") {
+     sh "mvn -Pprod test"
+     }
     }
     
-     stage('packaging') {
-       withMaven('mvn -Pprod package -DskipTests')
+    stage('packaging') {
+    withMaven(maven="maven-3.5") {
+     sh "mvn -Pprod package -DskipTest"
+     }
     }
     
  stage('SonarQube analysis') {
