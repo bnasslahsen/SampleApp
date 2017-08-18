@@ -10,13 +10,13 @@ node {
     }
     
     stage('backend tests') {
-    withMaven(maven="maven-3.5") {
+    withMaven(maven: 'maven-3.5') {
      sh "mvn -Pprod test"
      }
     }
     
     stage('packaging') {
-    withMaven(maven="maven-3.5") {
+    withMaven(maven: 'maven-3.5') {
      sh "mvn -Pprod package -DskipTest"
      }
     }
