@@ -5,28 +5,24 @@ node {
         checkout scm
     }
 
-    stage('check java') {
-        sh "java -version"
+    docker.image('openjdk:8').inside('-u root') {
+        stage('check java') {
+            sh "java -version"
+        }
+
+        stage('quality analysis') {
+            withSonarQubeEnv('sonar-server') {
+            }
+        }
     }
-    
-    stage('clean') {
-    withMaven(maven: 'maven-3.5') {
-     sh "mvn -Pprod clean"
-     }
+
+    def dockerImage
+    stage('build docker') {
     }
-    
-    stage('packaging') {
-    withMaven(maven: 'maven-3.5') {
-     sh "mvn -Pprod package -DskipTest"
-     }
+
+    stage('publish docker') {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-login') {
+            dockerImage.push 'latest'
+        }
     }
-    
- stage('SonarQube analysis') {
-    // requires SonarQube Scanner 2.8+
-    def scannerHome = tool 'sonar-runner';
-    withSonarQubeEnv('sonar-server') {
-      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sample-build-ic -Dsonar.sources=src -Dsonar.java.binaries=target"
-    }
-  }
-    
 }
