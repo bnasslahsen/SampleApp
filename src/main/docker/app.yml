@@ -1,7 +1,7 @@
 version: '2'
 services:
     sampleapp-app:
-        image: sampleapp
+        image: bnasslahsen/myrepo:latest
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - SPRING_DATASOURCE_URL=jdbc:mysql://sampleapp-mysql:3306/sampleapp?useUnicode=true&characterEncoding=utf8&useSSL=false
