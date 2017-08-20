@@ -116,7 +116,7 @@ jhipster:
     logging:
         logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
             enabled: true
-            host: localhost
+            host: 172.17.0.1
             port: 5000
             queue-size: 512
 
