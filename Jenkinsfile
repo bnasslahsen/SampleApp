@@ -48,10 +48,6 @@ node {
             archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
         }
 
-        stage('quality analysis') {
-            withSonarQubeEnv('sonar-server') {
-                sh "./mvnw sonar:sonar"
-            }
         }
     }
 
