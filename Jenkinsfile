@@ -48,7 +48,7 @@ node {
             archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
         }
 
-        }
+        
     }
 
     def dockerImage
